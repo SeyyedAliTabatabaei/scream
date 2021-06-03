@@ -58,7 +58,6 @@
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="10dp"/>
 
-
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>

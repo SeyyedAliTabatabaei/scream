@@ -40,9 +40,20 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentRank"
+            app:destination="@id/fragmentRank"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentEditeProfile"
         android:name="ir.at.scream.editeProfile.FragmentEditeProfile"
         android:label="FragmentEditeProfile" />
+    <fragment
+        android:id="@+id/fragmentRank"
+        android:name="ir.at.scream.rankList.FragmentRank"
+        android:label="FragmentRank" />
 </navigation>

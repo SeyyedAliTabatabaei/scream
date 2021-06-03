@@ -48,6 +48,13 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
 
         });
 
+        LinearLayout rankList = view.findViewById(R.id.btn_menu_rankList);
+        rankList.setOnClickListener(v -> {
+            Navigation.findNavController(vieww).navigate(R.id.action_fragmentMain_to_fragmentRank);
+            bottomSheetDialog.dismiss();
+
+        });
+
 
         bottomSheetDialog.create();
         return bottomSheetDialog;
