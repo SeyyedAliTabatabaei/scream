@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">scream</string>
+
+    <string name="name">نام و نام خانوادگی</string>
+    <string name="username">نام کاربری</string>
+    <string name="password">رمزعبور</string>
+    <string name="repitePassword">تکرار رمزعبور</string>
+    <string name="login">ورود</string>
+    <string name="signup">ثبت نام</string>
+    <string name="SaveInfo">ذخیره اطلاعات</string>
+
+</resources>
