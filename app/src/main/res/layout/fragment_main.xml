@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/gray50">
+    android:background="@color/gray50"
+    android:layoutDirection="ltr"
+    android:textDirection="rtl">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -32,15 +34,14 @@
                     app:lottie_rawRes="@raw/emoji"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    android:layout_toStartOf="@id/textView"
+                    android:layout_toStartOf="@id/tv_main_nameUser"
                     android:layout_centerVertical="true"/>
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tv_main_nameUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="سلام سیدعلی طباطبایی "
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="15sp"

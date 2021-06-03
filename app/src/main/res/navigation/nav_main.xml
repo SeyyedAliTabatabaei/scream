@@ -14,14 +14,18 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/fragmentLogin"/>
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentMain"
             app:destination="@id/fragmentMain"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/fragmentLogin"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentSignup"
@@ -39,14 +43,18 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/fragmentMain"/>
         <action
             android:id="@+id/action_fragmentMain_to_fragmentRank"
             app:destination="@id/fragmentRank"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/fragmentMain"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentEditeProfile"

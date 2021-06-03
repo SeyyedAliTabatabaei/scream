@@ -30,6 +30,8 @@ import org.jetbrains.annotations.NotNull;
 
 import ir.at.scream.R;
 import ir.at.scream.databinding.FragmentMainBinding;
+import ir.at.scream.model.ApiService;
+import ir.at.scream.model.SharedPrefrance;
 import ir.at.scream.model.ViewModelFactory;
 
 public class FragmentMain extends Fragment {
@@ -48,7 +50,9 @@ public class FragmentMain extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
 
-        viewModel = new ViewModelProvider(getActivity() , new ViewModelFactory()).get(MainViewModel.class);
+        viewModel = new ViewModelProvider(getActivity() , new ViewModelFactory(ApiService.getApiService() , new SharedPrefrance(getContext()))).get(MainViewModel.class);
+
+        binding.tvMainNameUser.setText(" سلام " + viewModel.getName());
 
         binding.btnMainMic.setOnClickListener(v -> {
             viewModel.visulizer(recorder);
@@ -93,7 +97,7 @@ public class FragmentMain extends Fragment {
 
 
         binding.btnMainMenu.setOnClickListener(v -> {
-            BottomSheetDialogMenu bottomSheetDialogMenu = new BottomSheetDialogMenu(view);
+            BottomSheetDialogMenu bottomSheetDialogMenu = new BottomSheetDialogMenu(view , viewModel.getImage() , viewModel.getName());
             bottomSheetDialogMenu.show(getActivity().getSupportFragmentManager() , null);
         });
 

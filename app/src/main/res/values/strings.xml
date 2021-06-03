@@ -9,5 +9,8 @@
     <string name="signup">ثبت نام</string>
     <string name="SaveInfo">ذخیره اطلاعات</string>
     <string name="rank">نفرات برتر</string>
+    <string name="errorConnection">خطا در ارتباط با سرور</string>
+    <string name="invalide">نامعتبر(حداقل 5 کاراکتر)</string>
+    <string name="notUser">نام کاربری یا رمز عبور اشتباه است (ثبت نام کنید)</string>
 
 </resources>
