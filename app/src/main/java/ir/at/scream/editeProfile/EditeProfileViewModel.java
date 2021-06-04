@@ -2,10 +2,6 @@ package ir.at.scream.editeProfile;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import org.jetbrains.annotations.NotNull;
-
-import io.reactivex.Scheduler;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -18,6 +14,7 @@ public class EditeProfileViewModel extends ViewModel {
     private RetrofitApiService apiService;
     private SharedPrefrance sharedPrefrance;
     private MutableLiveData<Boolean> responseUpdate = new MutableLiveData<>();
+    private Disposable disposable;
 
     public EditeProfileViewModel(RetrofitApiService apiService, SharedPrefrance sharedPrefrance) {
         this.apiService = apiService;
@@ -37,12 +34,12 @@ public class EditeProfileViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .subscribe(new SingleObserver<Response>() {
                     @Override
-                    public void onSubscribe(@NotNull Disposable d) {
-
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
                     }
 
                     @Override
-                    public void onSuccess(@NotNull Response response) {
+                    public void onSuccess(Response response) {
                         if (response.getResponse().equals("ok")){
                             sharedPrefrance.updateInfo(name, img);
                             responseUpdate.postValue(true);
@@ -52,7 +49,7 @@ public class EditeProfileViewModel extends ViewModel {
                     }
 
                     @Override
-                    public void onError(@NotNull Throwable e) {
+                    public void onError(Throwable e) {
                         responseUpdate.postValue(false);
                     }
                 });
@@ -60,5 +57,12 @@ public class EditeProfileViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getResponseUpdate() {
         return responseUpdate;
+    }
+
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposable.dispose();
     }
 }

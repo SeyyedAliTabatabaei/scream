@@ -2,9 +2,6 @@ package ir.at.scream.rankList;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.invoke.MutableCallSite;
 import java.util.List;
 
@@ -19,8 +16,10 @@ public class ListRankViewModel extends ViewModel {
 
     private final RetrofitApiService apiService;
     private final SharedPrefrance sharedPrefrance;
-    private MutableLiveData<List<Users>> responseGetList = new MutableLiveData<>();
-    private MutableLiveData<Boolean> errorConnection = new MutableLiveData<>();
+    private final MutableLiveData<List<Users>> responseGetList = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> errorConnection = new MutableLiveData<>();
+    private Disposable disposable;
+
 
     public ListRankViewModel(RetrofitApiService apiService, SharedPrefrance sharedPrefrance) {
         this.apiService = apiService;
@@ -36,17 +35,17 @@ public class ListRankViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .subscribe(new SingleObserver<List<Users>>() {
                     @Override
-                    public void onSubscribe(@NotNull Disposable d) {
-
+                    public void onSubscribe( Disposable d) {
+                        disposable = d;
                     }
 
                     @Override
-                    public void onSuccess(@NotNull List<Users> users) {
+                    public void onSuccess( List<Users> users) {
                         responseGetList.postValue(users);
                     }
 
                     @Override
-                    public void onError(@NotNull Throwable e) {
+                    public void onError( Throwable e) {
                         errorConnection.postValue(true);
                     }
                 });
@@ -58,5 +57,11 @@ public class ListRankViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getErrorConnection() {
         return errorConnection;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposable.dispose();
     }
 }

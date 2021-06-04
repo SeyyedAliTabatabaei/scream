@@ -4,9 +4,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.tyorikan.voicerecordingvisualizer.RecordingSampler;
-
-import org.jetbrains.annotations.NotNull;
-
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -22,6 +19,7 @@ public class MainViewModel extends ViewModel {
     private RecordingSampler recordingSampler;
     private final SharedPrefrance sharedPrefrance;
     private final RetrofitApiService apiService;
+    private Disposable disposable;
     private int max = 0;
 
 
@@ -69,17 +67,17 @@ public class MainViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .subscribe(new SingleObserver<Response>() {
                     @Override
-                    public void onSubscribe(@NotNull Disposable d) {
+                    public void onSubscribe( Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onSuccess( Response response) {
 
                     }
 
                     @Override
-                    public void onSuccess(@NotNull Response response) {
-
-                    }
-
-                    @Override
-                    public void onError(@NotNull Throwable e) {
+                    public void onError( Throwable e) {
                         errorConnection.postValue(true);
 
                     }
@@ -96,5 +94,11 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getErrorConnection() {
         return errorConnection;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposable.dispose();
     }
 }

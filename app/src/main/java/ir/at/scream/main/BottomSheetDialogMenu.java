@@ -18,8 +18,6 @@ import androidx.navigation.Navigation;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import org.jetbrains.annotations.NotNull;
-
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -133,12 +131,12 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<Response>() {
                     @Override
-                    public void onSubscribe(@NotNull Disposable d) {
+                    public void onSubscribe( Disposable d) {
 
                     }
 
                     @Override
-                    public void onSuccess(@NotNull Response response) {
+                    public void onSuccess( Response response) {
                         Intent intent2 = new Intent();
                         intent2.setAction(Intent.ACTION_SEND);
                         intent2.setType("text/plain");
@@ -147,7 +145,7 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
                     }
 
                     @Override
-                    public void onError(@NotNull Throwable e) {
+                    public void onError( Throwable e) {
                         Toast.makeText(context, context.getString(R.string.errorConnection), Toast.LENGTH_SHORT).show();
                     }
                 });

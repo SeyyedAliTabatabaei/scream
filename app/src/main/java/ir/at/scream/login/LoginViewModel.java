@@ -4,9 +4,6 @@ import android.content.SharedPreferences;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import org.jetbrains.annotations.NotNull;
-
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -16,10 +13,12 @@ import ir.at.scream.model.SharedPrefrance;
 
 public class LoginViewModel extends ViewModel {
 
-    private SharedPrefrance sharedPrefrance;
-    private RetrofitApiService retrofitApiService;
-    private MutableLiveData<Boolean> responseLogin = new MutableLiveData<>();
-    private MutableLiveData<Boolean> responseErrorConnection = new MutableLiveData<>();
+    private final SharedPrefrance sharedPrefrance;
+    private final RetrofitApiService retrofitApiService;
+    private final MutableLiveData<Boolean> responseLogin = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> responseErrorConnection = new MutableLiveData<>();
+    private Disposable disposable;
+
 
     public LoginViewModel(SharedPrefrance sharedPrefrance, RetrofitApiService retrofitApiService) {
         this.sharedPrefrance = sharedPrefrance;
@@ -35,12 +34,12 @@ public class LoginViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .subscribe(new SingleObserver<Response>() {
                     @Override
-                    public void onSubscribe(@NotNull Disposable d) {
-
+                    public void onSubscribe( Disposable d) {
+                        disposable = d;
                     }
 
                     @Override
-                    public void onSuccess(@NotNull Response response) {
+                    public void onSuccess( Response response) {
                         if (response.getResponse().equals("error"))
                             responseLogin.postValue(false);
                         else{
@@ -50,7 +49,7 @@ public class LoginViewModel extends ViewModel {
                     }
 
                     @Override
-                    public void onError(@NotNull Throwable e) {
+                    public void onError( Throwable e) {
                         responseErrorConnection.postValue(true);
                     }
                 });
@@ -63,5 +62,11 @@ public class LoginViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getResponseErrorConnection() {
         return responseErrorConnection;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposable.dispose();
     }
 }

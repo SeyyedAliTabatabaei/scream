@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
@@ -35,12 +32,12 @@ public class AdapterRank extends RecyclerView.Adapter<AdapterRank.ViewHolderRank
     }
 
     @Override
-    public ViewHolderRank onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public ViewHolderRank onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolderRank(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rank , parent , false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ViewHolderRank holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderRank holder, int position) {
         holder.onBind(position , usersList.get(position));
     }
 
@@ -54,7 +51,7 @@ public class AdapterRank extends RecyclerView.Adapter<AdapterRank.ViewHolderRank
         ImageView ivProfile;
         TextView tvRank , tvName , tvScore;
 
-        public ViewHolderRank(@NonNull @NotNull View itemView) {
+        public ViewHolderRank(@NonNull View itemView) {
             super(itemView);
 
             ivProfile = itemView.findViewById(R.id.iv_rank_imgProfile);

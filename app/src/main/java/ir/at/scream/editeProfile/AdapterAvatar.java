@@ -9,10 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import ir.at.scream.R;
 
@@ -27,14 +24,13 @@ public class AdapterAvatar extends RecyclerView.Adapter<AdapterAvatar.ViewHolder
     }
 
     @NonNull
-    @NotNull
     @Override
-    public ViewHolderAvatar onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public ViewHolderAvatar onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolderAvatar(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_avatar , parent , false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ViewHolderAvatar holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderAvatar holder, int position) {
 
         if (position == 0)
             holder.ivAvatar.setImageDrawable(context.getDrawable(R.drawable.ic_avatar1));
@@ -91,7 +87,7 @@ public class AdapterAvatar extends RecyclerView.Adapter<AdapterAvatar.ViewHolder
 
         ImageView ivAvatar;
 
-        public ViewHolderAvatar(@NonNull @NotNull View itemView) {
+        public ViewHolderAvatar(@NonNull View itemView) {
             super(itemView);
 
             ivAvatar = itemView.findViewById(R.id.iv_avatar);

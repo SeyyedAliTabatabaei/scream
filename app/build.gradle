@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "ir.at.scream"
+        applicationId "ir.at.screamme"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -18,7 +18,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -46,8 +46,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.scottyab:aescrypt:0.0.1'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation 'com.github.skydoves:progressview:1.1.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.pushpole.android:pushsdk:1.7.1'
+
 }

@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -30,9 +31,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.tyorikan.voicerecordingvisualizer.RecordingSampler;
-
-import org.jetbrains.annotations.NotNull;
-
 import ir.at.scream.R;
 import ir.at.scream.databinding.FragmentMainBinding;
 import ir.at.scream.model.ApiService;
@@ -44,7 +42,7 @@ public class FragmentMain extends Fragment {
     private FragmentMainBinding binding;
     private MainViewModel viewModel;
     private boolean recorder = true;
-    private int REQUEST_CODE = 1;
+    public static int REQUEST_CODE = 1;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,7 +52,7 @@ public class FragmentMain extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         viewModel = new ViewModelProvider(getActivity() , new ViewModelFactory(ApiService.getApiService() , new SharedPrefrance(getContext()))).get(MainViewModel.class);
 
@@ -69,7 +67,9 @@ public class FragmentMain extends Fragment {
         binding.btnMainMic.setOnClickListener(v -> {
             if (getActivity().getApplicationContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED){
                 REQUEST_CODE = REQUEST_CODE + 1;
-                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO} , REQUEST_CODE);
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[] {Manifest.permission.RECORD_AUDIO},
+                        REQUEST_CODE);
             }
             else {
                 viewModel.visulizer(recorder);
@@ -146,14 +146,5 @@ public class FragmentMain extends Fragment {
         translateAnimation2.setDuration(100);
         translateAnimation2.setFillAfter(true);
         binding.ivMainMute.startAnimation(translateAnimation2);
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_DENIED){
-            Toast.makeText(getContext(), "لطفا به میکروفون دسترسی دهید", Toast.LENGTH_SHORT).show();
-        }
     }
 }

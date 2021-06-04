@@ -15,8 +15,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jetbrains.annotations.NotNull;
-
 import ir.at.scream.R;
 import ir.at.scream.databinding.FragmentEditeprofileBinding;
 import ir.at.scream.model.ApiService;
@@ -38,7 +36,7 @@ public class FragmentEditeProfile extends Fragment implements AdapterAvatar.Even
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         viewModel = new ViewModelProvider(getActivity() , new ViewModelFactory(ApiService.getApiService() , new SharedPrefrance(getContext()))).get(EditeProfileViewModel.class);
 

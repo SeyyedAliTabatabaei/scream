@@ -2,9 +2,6 @@ package ir.at.scream.signup;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import org.jetbrains.annotations.NotNull;
-
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -17,6 +14,7 @@ public class SignupViewModel extends ViewModel {
     private final RetrofitApiService apiService;
     private final SharedPrefrance sharedPrefrance;
     private final MutableLiveData<Integer> responseSignup = new MutableLiveData<>();
+    private Disposable disposable;
 
     public SignupViewModel(RetrofitApiService apiService, SharedPrefrance sharedPrefrance) {
         this.apiService = apiService;
@@ -28,12 +26,12 @@ public class SignupViewModel extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .subscribe(new SingleObserver<Response>() {
                     @Override
-                    public void onSubscribe(@NotNull Disposable d) {
-
+                    public void onSubscribe( Disposable d) {
+                        disposable = d;
                     }
 
                     @Override
-                    public void onSuccess(@NotNull Response response) {
+                    public void onSuccess( Response response) {
                         if (response.getResponse().equals("existUser"))
                             responseSignup.postValue(0);
                         else if (response.getResponse().equals("error"))
@@ -45,7 +43,7 @@ public class SignupViewModel extends ViewModel {
                     }
 
                     @Override
-                    public void onError(@NotNull Throwable e) {
+                    public void onError( Throwable e) {
                         responseSignup.postValue(1);
                     }
                 });
@@ -53,5 +51,11 @@ public class SignupViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getResponseSignup() {
         return responseSignup;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        disposable.dispose();
     }
 }
