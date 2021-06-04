@@ -1,7 +1,11 @@
 package ir.at.scream.main;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +44,7 @@ public class FragmentMain extends Fragment {
     private FragmentMainBinding binding;
     private MainViewModel viewModel;
     private boolean recorder = true;
+    private int REQUEST_CODE = 1;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,22 +58,34 @@ public class FragmentMain extends Fragment {
 
         viewModel = new ViewModelProvider(getActivity() , new ViewModelFactory(ApiService.getApiService() , new SharedPrefrance(getContext()))).get(MainViewModel.class);
 
+        viewModel.getErrorConnection().observe(getViewLifecycleOwner(), error -> {
+            if (error)
+                Toast.makeText(getContext(), getString(R.string.errorConnection), Toast.LENGTH_LONG).show();
+        });
+
+
         binding.tvMainNameUser.setText(" سلام " + viewModel.getName());
 
         binding.btnMainMic.setOnClickListener(v -> {
-            viewModel.visulizer(recorder);
-            if (recorder){
-                binding.animMainVisulizer.playAnimation();
-                unmute();
-                recorder = false;
+            if (getActivity().getApplicationContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED){
+                REQUEST_CODE = REQUEST_CODE + 1;
+                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO} , REQUEST_CODE);
             }
-            else{
-                binding.animMainVisulizer.pauseAnimation();
-                binding.animMainVisulizer.setFrame(1);
-                binding.tvMainColumeMoment.setText("0");
-                binding.progressBarMainColumeMoment.setProgress(0);
-                mute();
-                recorder = true;
+            else {
+                viewModel.visulizer(recorder);
+                if (recorder){
+                    binding.animMainVisulizer.playAnimation();
+                    unmute();
+                    recorder = false;
+                }
+                else{
+                    binding.animMainVisulizer.pauseAnimation();
+                    binding.animMainVisulizer.setFrame(1);
+                    binding.tvMainColumeMoment.setText("0");
+                    binding.progressBarMainColumeMoment.setProgress(0);
+                    mute();
+                    recorder = true;
+                }
             }
         });
 
@@ -130,4 +148,12 @@ public class FragmentMain extends Fragment {
         binding.ivMainMute.startAnimation(translateAnimation2);
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_DENIED){
+            Toast.makeText(getContext(), "لطفا به میکروفون دسترسی دهید", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

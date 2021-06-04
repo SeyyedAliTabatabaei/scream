@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -34,11 +35,11 @@
                     app:lottie_rawRes="@raw/emoji2"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    android:layout_toStartOf="@id/tv_main_nameUser"
+                    android:layout_toStartOf="@id/tv_rank_userrank"
                     android:layout_centerVertical="true"/>
 
                 <TextView
-                    android:id="@+id/tv_main_nameUser"
+                    android:id="@+id/tv_rank_userrank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"

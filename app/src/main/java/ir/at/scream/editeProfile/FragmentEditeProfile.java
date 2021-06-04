@@ -62,6 +62,7 @@ public class FragmentEditeProfile extends Fragment implements AdapterAvatar.Even
         viewModel.getResponseUpdate().observe(getViewLifecycleOwner(), response -> {
             if (response != null)
                 if (response){
+                    viewModel.getResponseUpdate().setValue(null);
                     Navigation.findNavController(view).popBackStack();
                     Toast.makeText(getContext(), getString(R.string.okUpdate), Toast.LENGTH_SHORT).show();
                     binding.btnEditeProfileSave.setEnabled(true);

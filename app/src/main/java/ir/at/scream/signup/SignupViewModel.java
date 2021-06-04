@@ -39,7 +39,7 @@ public class SignupViewModel extends ViewModel {
                         else if (response.getResponse().equals("error"))
                             responseSignup.postValue(1);
                         else{
-                            sharedPrefrance.saveLogin(response.getResponse() , name , "0" , "1");
+                            sharedPrefrance.saveLogin(response.getResponse() , name , username , "0" , "1");
                             responseSignup.postValue(2);
                         }
                     }

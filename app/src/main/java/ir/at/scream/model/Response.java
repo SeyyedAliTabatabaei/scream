@@ -13,6 +13,9 @@ public class Response {
     @SerializedName("Name")
     private String name;
 
+    @SerializedName("Username")
+    private String username;
+
     @SerializedName("ImgProf")
     private String imgProf;
 
@@ -30,5 +33,9 @@ public class Response {
 
     public String getImgProf() {
         return imgProf;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

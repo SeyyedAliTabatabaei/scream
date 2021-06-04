@@ -5,6 +5,12 @@ import androidx.lifecycle.ViewModel;
 
 import com.tyorikan.voicerecordingvisualizer.RecordingSampler;
 
+import org.jetbrains.annotations.NotNull;
+
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import ir.at.scream.model.Response;
 import ir.at.scream.model.RetrofitApiService;
 import ir.at.scream.model.SharedPrefrance;
 
@@ -12,7 +18,8 @@ public class MainViewModel extends ViewModel {
 
     private final MutableLiveData<Integer> getVolume = new MutableLiveData<>();
     private final MutableLiveData<Integer> getMaxVolume = new MutableLiveData<>();
-    private final RecordingSampler recordingSampler = new RecordingSampler();
+    private final MutableLiveData<Boolean> errorConnection = new MutableLiveData<>();
+    private RecordingSampler recordingSampler;
     private final SharedPrefrance sharedPrefrance;
     private final RetrofitApiService apiService;
     private int max = 0;
@@ -24,6 +31,7 @@ public class MainViewModel extends ViewModel {
 
         max = Integer.parseInt(sharedPrefrance.getScore());
         getMaxVolume.setValue(max);
+        updateInfo(String.valueOf(max));
     }
 
     public String getName(){
@@ -35,11 +43,16 @@ public class MainViewModel extends ViewModel {
     }
 
     public void visulizer(boolean start){
+
+        if (recordingSampler == null)
+            recordingSampler = new RecordingSampler();
+
         recordingSampler.setVolumeListener(volume -> {
             if (volume > max){
                 max = volume;
                 getMaxVolume.postValue(max);
                 sharedPrefrance.updateScore(String.valueOf(max));
+                updateInfo(String.valueOf(max));
             }
             getVolume.postValue(volume);
         });
@@ -51,11 +64,37 @@ public class MainViewModel extends ViewModel {
             recordingSampler.stopRecording();
     }
 
+    public void updateInfo(String maxScore){
+        apiService.updateScore(sharedPrefrance.getSlt() , maxScore)
+                .subscribeOn(Schedulers.io())
+                .subscribe(new SingleObserver<Response>() {
+                    @Override
+                    public void onSubscribe(@NotNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(@NotNull Response response) {
+
+                    }
+
+                    @Override
+                    public void onError(@NotNull Throwable e) {
+                        errorConnection.postValue(true);
+
+                    }
+                });
+    }
+
     public MutableLiveData<Integer> getGetVolume() {
         return getVolume;
     }
 
     public MutableLiveData<Integer> getGetMaxVolume() {
         return getMaxVolume;
+    }
+
+    public MutableLiveData<Boolean> getErrorConnection() {
+        return errorConnection;
     }
 }

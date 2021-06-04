@@ -28,7 +28,7 @@ public class SharedPrefrance {
     }
 
 
-    public void saveLogin(String token , String name , String score , String img){
+    public void saveLogin(String token , String name , String username , String score , String img){
 
         if (editor == null)
             editor = sharedPreferences.edit();
@@ -36,6 +36,7 @@ public class SharedPrefrance {
         editor.putBoolean("login" , true);
         editor.putString("salt" , token);
         editor.putString("name" , name);
+        editor.putString("username" , username);
         editor.putString("score" , score);
         editor.putString("img" , img);
 
@@ -65,6 +66,10 @@ public class SharedPrefrance {
 
     public String getName(){
         return sharedPreferences.getString("name" , "");
+    }
+
+    public String getUsername(){
+        return sharedPreferences.getString("username" , "");
     }
 
     public String getScore(){

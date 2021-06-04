@@ -1,5 +1,7 @@
 package ir.at.scream.model;
 
+import java.util.List;
+
 import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -22,4 +24,12 @@ public interface RetrofitApiService {
     Single<Response> updateInfo(@Field("token") String token ,
                                 @Field("name") String name ,
                                 @Field("img") String img);
+
+    @FormUrlEncoded
+    @POST("updateScore.php")
+    Single<Response> updateScore(@Field("token") String token ,
+                                @Field("score") String score);
+
+    @POST("getListRanks.php")
+    Single<List<Users>> getListRanks();
 }

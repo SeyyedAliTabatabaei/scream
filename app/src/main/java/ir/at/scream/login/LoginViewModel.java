@@ -44,7 +44,7 @@ public class LoginViewModel extends ViewModel {
                         if (response.getResponse().equals("error"))
                             responseLogin.postValue(false);
                         else{
-                            sharedPrefrance.saveLogin(response.getResponse() , response.getName() , response.getScore() , response.getImgProf());
+                            sharedPrefrance.saveLogin(response.getResponse() , response.getName() , response.getUsername() , response.getScore() , response.getImgProf());
                             responseLogin.postValue(true);
                         }
                     }

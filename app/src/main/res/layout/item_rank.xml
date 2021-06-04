@@ -36,13 +36,14 @@
             android:layout_margin="15dp"
             android:layout_toStartOf="@id/tv_rank_numberRank">
             <ImageView
-                android:id="@+id/iv_rank"
+                android:id="@+id/iv_rank_imgProfile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_avatar1"/>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
+            android:id="@+id/tv_rank_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@id/l_rank_image"
@@ -60,6 +61,7 @@
             android:layout_marginStart="15dp"/>
 
         <TextView
+            android:id="@+id/tv_rank_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/l_rank_image2"
