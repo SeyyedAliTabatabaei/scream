@@ -32,4 +32,7 @@ public interface RetrofitApiService {
 
     @POST("getListRanks.php")
     Single<List<Users>> getListRanks();
+
+    @POST("share.php")
+    Single<Response> shareApp();
 }

@@ -55,6 +55,22 @@ public class SharedPrefrance {
         editor.apply();
     }
 
+    public void exiteAccount(){
+
+        if (editor == null)
+            editor = sharedPreferences.edit();
+
+        editor.putBoolean("login" , false);
+        editor.putString("salt" , "");
+        editor.putString("name" , "");
+        editor.putString("username" , "");
+        editor.putString("score" , "");
+        editor.putString("img" , "");
+
+
+        editor.apply();
+    }
+
     public void updateScore(String score){
         editor.putString("score" , score);
         editor.apply();

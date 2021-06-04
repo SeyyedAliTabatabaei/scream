@@ -17,5 +17,9 @@
     <string name="notUser">نام کاربری یا رمز عبور اشتباه است (ثبت نام کنید)</string>
     <string name="existUser">کاربر با این نام کاربری وجود دارد</string>
     <string name="okUpdate">اطلاعات با موفقیت به روز شد</string>
+    <string name="aboutMe">درباره ما</string>
+    <string name="share">ارسال برای دوستان</string>
+    <string name="exiteAccount">خروج از حساب کاربری</string>
+    <string name="exiteAccountOk">با موفقیت از حساب کاربری خارج شدید</string>
 
 </resources>
