@@ -32,6 +32,15 @@
         android:name="ir.at.scream.signup.FragmentSignup"
         android:label="FragmentSignup">
 
+        <action
+            android:id="@+id/action_fragmentSignup_to_fragmentMain2"
+            app:destination="@id/fragmentMain"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/fragmentSignup"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentMain"
@@ -43,18 +52,14 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/fragmentMain"/>
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_fragmentMain_to_fragmentRank"
             app:destination="@id/fragmentRank"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/fragmentMain"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentEditeProfile"

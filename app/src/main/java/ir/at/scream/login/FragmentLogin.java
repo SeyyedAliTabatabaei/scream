@@ -46,7 +46,8 @@ public class FragmentLogin extends Fragment {
             else if (binding.etLoginPassword.length() < 5)
                 binding.etLoginPassword.setError(getString(R.string.invalide));
             else {
-                viewModel.login(binding.etLoginUsername.getText().toString() , binding.etLoginPassword.getText().toString());
+                viewModel.login(binding.etLoginUsername.getText().toString().toLowerCase() ,
+                        binding.etLoginPassword.getText().toString());
                 binding.btnLoginLogin.setEnabled(false);
                 binding.btnLoginSignup.setEnabled(false);
             }

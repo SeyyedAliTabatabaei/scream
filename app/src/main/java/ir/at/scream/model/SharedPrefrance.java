@@ -43,6 +43,17 @@ public class SharedPrefrance {
         editor.apply();
     }
 
+    public void updateInfo(String name , String img){
+
+        if (editor == null)
+            editor = sharedPreferences.edit();
+
+        editor.putString("name" , name);
+        editor.putString("img" , img);
+
+        editor.apply();
+    }
+
     public void updateScore(String score){
         editor.putString("score" , score);
         editor.apply();

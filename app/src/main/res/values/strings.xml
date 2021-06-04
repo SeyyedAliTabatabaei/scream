@@ -3,14 +3,19 @@
 
     <string name="name">نام و نام خانوادگی</string>
     <string name="username">نام کاربری</string>
+    <string name="usernameHelp">فقط حروف ( A تا Z ) و اعداد (0 تا 9)</string>
     <string name="password">رمزعبور</string>
     <string name="repitePassword">تکرار رمزعبور</string>
+    <string name="passwordInvalide">رمزعبور با تکرار رمزعبور برابر نمیباشد</string>
     <string name="login">ورود</string>
     <string name="signup">ثبت نام</string>
     <string name="SaveInfo">ذخیره اطلاعات</string>
     <string name="rank">نفرات برتر</string>
     <string name="errorConnection">خطا در ارتباط با سرور</string>
     <string name="invalide">نامعتبر(حداقل 5 کاراکتر)</string>
+    <string name="notBlank">این مورد نمیتواند خالی باشد</string>
     <string name="notUser">نام کاربری یا رمز عبور اشتباه است (ثبت نام کنید)</string>
+    <string name="existUser">کاربر با این نام کاربری وجود دارد</string>
+    <string name="okUpdate">اطلاعات با موفقیت به روز شد</string>
 
 </resources>
