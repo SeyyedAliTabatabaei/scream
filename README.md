@@ -5,7 +5,7 @@
 
 
 
-👉👉👉[دانلود از کافه بازار](https://cafebazaar.ir/app/ir.at.screamme)👈👈👈
+:point_right: :point_right: :point_right: [دانلود از کافه بازار](https://cafebazaar.ir/app/ir.at.screamme)👈👈👈
 
 
 
