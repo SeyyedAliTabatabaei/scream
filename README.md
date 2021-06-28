@@ -12,10 +12,10 @@
 . \
 . \
 . \
-. \
-
-
-
+. 
+### تصاویر برنامه : :point_down: :point_down:
+\
+\
 ##### ![Digital-clock](https://raw.githubusercontent.com/alitabatabaei1381/scream/master/ScreenShot/Untitled-1.jpg)
 
 
