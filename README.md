@@ -13,6 +13,7 @@
 . \
 . \
 . 
+#### [ویدئو برنامه](https://cafebazaar.ir/app/ir.at.screamme)
 ### تصاویر برنامه : :point_down: :point_down:
 \
 \
@@ -25,6 +26,5 @@
 .\
 .\
 
-##### ![Digital-clock](https://raw.githubusercontent.com/alitabatabaei1381/scream/master/ScreenShot/5.jpg)
 
 
